@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>ExampleMod</Name>
+  <Author>Example</Author>
+  <Version>0.0.0</Version>
+  <!-- Steam description using steam styling tags for Steam workshop page -->
+  <Description>[h1]ExampleMod[/h1]
+
+    Installation: Subscribe the workshop item and make sure that BepInEx and StationeersLaunchpad are installed.
+    See: https://github.com/StationeersLaunchPad/StationeersLaunchPad
+
+    This ExampleMod is a starting point for modders and not meant to be published as-is.
+  </Description>
+  <!-- Ingame Description using TMP tags for Workshop menu -->
+  <InGameDescription>
+    <![CDATA[<size="30"><color=#ffa500> ExamplePatchMod </color></size>
+Installation: Subscribe the workshop item and make sure that BepInEx and StationeersLaunchpad are installed.
+See: https://github.com/StationeersLaunchPad/StationeersLaunchPad
+
+This ExampleMod is a starting point for modders and not meant to be published as-is.
+]]>
+  </InGameDescription>
+  <!-- The whole contents of ChangeLog should be changed for each publication for Steam workshop page -->
+  <ChangeLog>
+    [h3]Version 0.0.0:[/h3]
+    [list]
+    [*]Initial release
+    [/list]
+  </ChangeLog>
+  <!-- StationeersMods and BepInEx tags for Steam workshop page will be automatically added by the framework when publishing -->
+  <Tags>
+    <Tag>StationeersMods</Tag>
+  </Tags>
+  <!-- Automatic downloads of dependencies -->
+  <Dependencies />
+  <!-- Automatic reordering of the mods list -->
+  <LoadBefore />
+  <LoadAfter />
+</ModMetadata>

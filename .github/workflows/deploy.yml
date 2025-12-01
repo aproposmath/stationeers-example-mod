@@ -44,12 +44,34 @@ jobs:
           dotnet restore
           dotnet build --configuration Release Main.csproj
 
-      - name: Find compiled DLL
+      - name: Package DLL and About folder
         if: github.ref_type == 'tag'
-        id: find_dll
+        id: package_zip
         run: |
+          set -euo pipefail
+
+          # 1) Find the first compiled DLL
           DLL_PATH=$(find ./bin/Release -type f -name '*.dll' | head -n 1)
-          echo "dll_path=$DLL_PATH" >> $GITHUB_OUTPUT
+          echo "Found DLL at: $DLL_PATH"
+
+          # 2) Get base name (without extension) and version from tag
+          DLL_FILENAME=$(basename "$DLL_PATH")        # e.g. MyMod.dll
+          BASE_NAME="${DLL_FILENAME%.dll}"            # e.g. MyMod
+          VERSION="${GITHUB_REF_NAME}"                # e.g. v1.2.3 (tag name)
+
+          # 3) Build zip name: MyMod-v1.2.3.zip
+          ZIP_NAME="${BASE_NAME}-${VERSION}.zip"
+
+          # 4) Build package structure
+          mkdir -p dist/package
+          cp "$DLL_PATH" dist/package/
+          cp -r About dist/package/
+
+          # 5) Create zip (DLL + About folder)
+          (cd dist/package && zip -r "../$ZIP_NAME" .)
+
+          # 6) Expose zip path as output for later steps (e.g. upload to release)
+          echo "zip_path=dist/$ZIP_NAME" >> "$GITHUB_OUTPUT"
 
       - name: Create GitHub Release
         if: github.ref_type == 'tag'
@@ -57,6 +79,6 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
-          files: ${{ steps.find_dll.outputs.dll_path }}
+          files: ${{ steps.find_dll.outputs.zip_path }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
