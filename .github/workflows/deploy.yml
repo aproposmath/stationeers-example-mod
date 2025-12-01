@@ -63,12 +63,12 @@ jobs:
           ZIP_NAME="${BASE_NAME}-${VERSION}.zip"
 
           # 4) Build package structure
-          mkdir -p dist/package
-          cp "$DLL_PATH" dist/package/
-          cp -r About dist/package/
+          mkdir -p dist/$BASE_NAME
+          cp "$DLL_PATH" dist/$BASE_NAME/
+          cp -r About dist/$BASE_NAME/
 
           # 5) Create zip (DLL + About folder)
-          (cd dist/package && zip -r "../$ZIP_NAME" .)
+          (cd dist && zip -r "$ZIP_NAME" $BASE_NAME)
 
           # 6) Expose zip path as output for later steps (e.g. upload to release)
           echo "zip_path=dist/$ZIP_NAME" >> "$GITHUB_OUTPUT"
