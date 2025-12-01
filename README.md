@@ -1,4 +1,4 @@
-# Stationeers Example Mod (Code-only with [Stationeers Launchpad](https://github.com/StationeersLaunchPad/StationeersLaunchPad))
+# Stationeers Example Mod
 
 This serves as a template for a code-only Stationeers mod using [Stationeers Launchpad](https://github.com/StationeersLaunchPad/StationeersLaunchPad) and [BepInEx](https://github.com/BepInEx/BepInEx).
 
