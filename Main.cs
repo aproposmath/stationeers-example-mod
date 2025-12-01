@@ -3,47 +3,58 @@ using BepInEx;
 using HarmonyLib;
 using StationeersMods.Interface;
 
-namespace ExampleMod
+namespace ExampleMod;
+
+[StationeersMod(PluginGuid, PluginName, PluginVersion)]
+[BepInPlugin(PluginGuid, PluginName, PluginVersion)]
+public sealed class ExampleModPlugin : BaseUnityPlugin
 {
-    [StationeersMod(PluginGuid, PluginName, PluginVersion)]
-    [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
-    public class ExampleModPlugin : BaseUnityPlugin
+    public const string PluginGuid = "aproposmath-stationeers-example-mod"; // TODO: make this unique per mod
+    public const string PluginName = ThisAssembly.AssemblyName;
+    public const string PluginVersion = ThisAssembly.AssemblyVersion;
+    public const string PluginLongVersion = ThisAssembly.AssemblyInformationalVersion;
+
+    private Harmony? _harmony;
+
+    private void Awake()
     {
-        public const string PluginGuid = "aproposmath-stationeers-example-mod"; // Change this to your own unique Mod ID
-        public const string PluginName = ThisAssembly.AssemblyName;
-        public const string PluginVersion = ThisAssembly.AssemblyVersion;
-        public const string PluginLongVersion = ThisAssembly.AssemblyInformationalVersion;
-
-        private Harmony _harmony = null;
-
-        private void Awake()
+        try
         {
-            try
-            {
-                Logger.LogInfo(
-                    $"Awake {PluginName} {PluginGuid} {PluginLongVersion}"
-                );
+            Logger.LogInfo(
+                $"[{PluginName}] Awake (Guid: {PluginGuid}, Version: {PluginLongVersion})"
+            );
 
-                _harmony = new Harmony(PluginGuid);
-                _harmony.PatchAll();
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError($"Error in {PluginName} {PluginLongVersion} Awake: {ex}");
-            }
+            _harmony = new Harmony(PluginGuid);
+            _harmony.PatchAll();
         }
-
-        private void OnDestroy()
+        catch (Exception ex)
         {
-            Logger.LogInfo($"OnDestroy {PluginName} {PluginLongVersion}");
+            Logger.LogError($"[{PluginName}] Error during Awake: {ex}");
+        }
+    }
 
-            // Uncomment this if you are using BepInEx SriptEngine plugin for hot-reloading
-            // the mod while the game is running
-            // See https://github.com/BepInEx/BepInEx.Debug/blob/master/README.md#scriptengine
-            // But remove it again before building a release version of your mod, as sometimes this function is called immediately
-            // after Awake(), which would break your mod.
+    private void OnDestroy()
+    {
+        Logger.LogInfo($"[{PluginName}] OnDestroy (Version: {PluginLongVersion})");
 
-            _harmony.UnpatchSelf();
+        if (_harmony is null)
+            return;
+
+        try
+        {
+            // If using BepInEx ScriptEngine for hot-reload, you may want to unpatch here.
+            // For release builds, be aware this can be called immediately after Awake(),
+            // which may break your mod depending on your use-case.
+
+            // _harmony.UnpatchSelf();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError($"[{PluginName}] Error while unpatching Harmony in {nameof(OnDestroy)}: {ex}");
+        }
+        finally
+        {
+            _harmony = null;
         }
     }
 }
