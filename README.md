@@ -27,7 +27,7 @@ This serves as a template for a code-only Stationeers mod using BepInEx.
 
 ## Release a new Version
 
-Just create a new git tag and push it to GitHub. The workflow will automatically build the release and upload it to the [releases page](https://github.com/aproposmath/stationeers-example-mod/releases) page on github.
+Create a new git tag and push it to GitHub. The workflow will automatically build the release and upload it to the [releases page](https://github.com/aproposmath/stationeers-example-mod/releases) page on github.
 
 ```bash
 git tag v1.2.3
