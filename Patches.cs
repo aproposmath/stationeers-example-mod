@@ -44,7 +44,7 @@ public static class Patch_RoomController_ThreadedWork
         var elapsed = _stopwatch.ElapsedMilliseconds;
         if (elapsed >= 10) // Only log if it took more than 10 ms
         {
-            UnityEngine.Debug.Log($"[ExampleMod] RoomController.ThreadedWork took {elapsed} ms");
+            UnityEngine.Debug.Log($"[{ThisAssembly.AssemblyName}] RoomController.ThreadedWork took {elapsed} ms");
         }
     }
 }
