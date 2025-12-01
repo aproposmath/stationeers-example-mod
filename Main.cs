@@ -50,7 +50,9 @@ public sealed class ExampleModPlugin : BaseUnityPlugin
         }
         catch (Exception ex)
         {
-            Logger.LogError($"[{PluginName}] Error while unpatching Harmony in {nameof(OnDestroy)}: {ex}");
+            Logger.LogError(
+                $"[{PluginName}] Error while unpatching Harmony in {nameof(OnDestroy)}: {ex}"
+            );
         }
         finally
         {

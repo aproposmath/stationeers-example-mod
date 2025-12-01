@@ -59,9 +59,7 @@ public static class Patch_RoomController_ThreadedWork
 public static class Patch_InventoryManager_PlacementMode
 {
     [HarmonyTranspiler]
-    public static IEnumerable<CodeInstruction> Transpiler(
-        IEnumerable<CodeInstruction> instructions
-    )
+    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
         var code = new List<CodeInstruction>(instructions);
 
@@ -84,8 +82,8 @@ public static class Patch_InventoryManager_PlacementMode
             }
 
             code[i] = new CodeInstruction(OpCodes.Call, colorBlueGetter)
-                .WithLabels(code[i].labels)   // Preserve labels, if any
-                .WithBlocks(code[i].blocks);  // Preserve exception blocks, if any
+                .WithLabels(code[i].labels) // Preserve labels, if any
+                .WithBlocks(code[i].blocks); // Preserve exception blocks, if any
         }
 
         return code;
