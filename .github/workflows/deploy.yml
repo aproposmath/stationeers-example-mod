@@ -72,6 +72,7 @@ jobs:
 
           # 6) Expose zip path as output for later steps (e.g. upload to release)
           echo "zip_path=dist/$ZIP_NAME" >> "$GITHUB_OUTPUT"
+          echo "Created package: dist/$ZIP_NAME"
 
       - name: Create GitHub Release
         if: github.ref_type == 'tag'
@@ -79,6 +80,6 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
-          files: ${{ steps.find_dll.outputs.zip_path }}
+          files: ${{ steps.package_zip.outputs.zip_path }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
