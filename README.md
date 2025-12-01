@@ -1,6 +1,6 @@
-# Stationeers Example Mod (Code-only with BepInEx)
+# Stationeers Example Mod (Code-only with [Stationeers Launchpad](https://github.com/StationeersLaunchPad/StationeersLaunchPad))
 
-This serves as a template for a code-only Stationeers mod using BepInEx.
+This serves as a template for a code-only Stationeers mod using [Stationeers Launchpad](https://github.com/StationeersLaunchPad/StationeersLaunchPad) and [BepInEx](https://github.com/BepInEx/BepInEx).
 
 ## Features
 
@@ -36,5 +36,5 @@ git push origin v1.2.3
 
 ## Installation
 
-This mode requires [BepInEx](https://github.com/BepInEx/BepInEx).
-Download the latest release from the [releases page](https://github.com/aproposmath/stationeers-example-mod/releases) and put it into your `BepInEx/plugins` folder.
+This mode requires [Stationeers Launchpad](https://github.com/StationeersLaunchPad/StationeersLaunchPad) and [BepInEx](https://github.com/BepInEx/BepInEx).
+Download the latest release from the [releases page](https://github.com/aproposmath/stationeers-example-mod/releases) and extract it into your `BepInEx/plugins` folder.
