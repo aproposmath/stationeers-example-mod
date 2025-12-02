@@ -18,7 +18,7 @@ public static class Patch_Lungs_TakeBreath
     [HarmonyPrefix]
     public static bool Prefix()
     {
-        return false;
+        return true;
     }
 }
 
