@@ -10,8 +10,8 @@
     <StationeersDllDir Condition="Exists('D:\Program Files (x86)\Steam\$(DllSubDirW)')">D:\Program Files (x86)\Steam\$(DllSubDirW)</StationeersDllDir>
     <StationeersDllDir Condition="Exists('D:\Program Files\Steam\$(DllSubDirW)')">D:\Program Files\Steam\$(DllSubDirW)</StationeersDllDir>
     <StationeersDllDir Condition="Exists('C:\Steam\$(DllSubDirW)')">C:\Steam\$(DllSubDirW)</StationeersDllDir>
-    <StationeersDllDir Condition="Exists('D:\Steam\$(DllSubDirW)')">C:\Steam\$(DllSubDirW)</StationeersDllDir>
-    <StationeersDllDir Condition="Exists('E:\Steam\$(DllSubDirW)')">C:\Steam\$(DllSubDirW)</StationeersDllDir>
+    <StationeersDllDir Condition="Exists('D:\Steam\$(DllSubDirW)')">D:\Steam\$(DllSubDirW)</StationeersDllDir>
+    <StationeersDllDir Condition="Exists('E:\Steam\$(DllSubDirW)')">E:\Steam\$(DllSubDirW)</StationeersDllDir>
     <!-- Check for Linux Steam paths using environment variables or known directories -->
     <DllSubDirL>steamapps/common/Stationeers/rocketstation_Data/Managed</DllSubDirL>
     <StationeersDllDir Condition="Exists('$(HOME)/.steam/steam/$(DllSubDirL)')">$(HOME)/.steam/steam/$(DllSubDirL)</StationeersDllDir>
