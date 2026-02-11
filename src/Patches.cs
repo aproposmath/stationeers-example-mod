@@ -22,32 +22,32 @@ public static class Patch_Lungs_TakeBreath
     }
 }
 
-// Example patch: log time spent finding new rooms, but only if it took longer than 10 ms
-[HarmonyPatch(typeof(RoomController), nameof(RoomController.ThreadedWork))]
-public static class Patch_RoomController_ThreadedWork
-{
-    private static readonly Stopwatch _stopwatch = new();
-
-    [HarmonyPrefix]
-    public static void Prefix()
-    {
-        // Start the stopwatch before the original method is called
-        _stopwatch.Restart();
-    }
-
-    [HarmonyPostfix]
-    public static void Postfix()
-    {
-        // Stop the stopwatch after the original method finished
-        _stopwatch.Stop();
-
-        var elapsed = _stopwatch.ElapsedMilliseconds;
-        if (elapsed >= 10) // Only log if it took more than 10 ms
-        {
-            UnityEngine.Debug.Log($"[{ThisAssembly.AssemblyName}] RoomController.ThreadedWork took {elapsed} ms");
-        }
-    }
-}
+// // Example patch: log time spent finding new rooms, but only if it took longer than 10 ms
+// [HarmonyPatch(typeof(RoomController), nameof(RoomController.ThreadedWork))]
+// public static class Patch_RoomController_ThreadedWork
+// {
+//     private static readonly Stopwatch _stopwatch = new();
+//
+//     [HarmonyPrefix]
+//     public static void Prefix()
+//     {
+//         // Start the stopwatch before the original method is called
+//         _stopwatch.Restart();
+//     }
+//
+//     [HarmonyPostfix]
+//     public static void Postfix()
+//     {
+//         // Stop the stopwatch after the original method finished
+//         _stopwatch.Stop();
+//
+//         var elapsed = _stopwatch.ElapsedMilliseconds;
+//         if (elapsed >= 10) // Only log if it took more than 10 ms
+//         {
+//             UnityEngine.Debug.Log($"[{ThisAssembly.AssemblyName}] RoomController.ThreadedWork took {elapsed} ms");
+//         }
+//     }
+// }
 
 // Example patch to change the blueprint color to blue instead of yellow
 // when cable/pipe ports are matching.

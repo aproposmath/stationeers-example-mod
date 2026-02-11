@@ -9,19 +9,23 @@ namespace ExampleMod;
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 public sealed class ExampleModPlugin : BaseUnityPlugin
 {
-    public const string PluginGuid = "aproposmath-stationeers-example-mod"; // TODO: make this unique per mod
-    public const string PluginName = ThisAssembly.AssemblyName;
-    public const string PluginVersion = ThisAssembly.AssemblyVersion;
-    public const string PluginLongVersion = ThisAssembly.AssemblyInformationalVersion;
+    public const string PluginGuid = ThisAssembly.ModInfo.AssemblyGuid;
+    public const string PluginName = ThisAssembly.ModInfo.AssemblyName;
+    public const string PluginVersion = ThisAssembly.ModInfo.Version;
+    public const string PluginVersionGit = ThisAssembly.ModInfo.VersionGit;
+    public static readonly string PluginBuildTime = DateTime
+        .Parse(ThisAssembly.ModInfo.BuiltTime)
+        .ToLocalTime()
+        .ToString("o");
 
-    private Harmony? _harmony;
+    private Harmony _harmony;
 
     private void Awake()
     {
         try
         {
             Logger.LogInfo(
-                $"[{PluginName}] Awake (Guid: {PluginGuid}, Version: {PluginLongVersion})"
+                $"[{PluginName}] Awake (Guid: {PluginGuid}, Version: {PluginVersionGit}, BuildTime: {PluginBuildTime})"
             );
 
             _harmony = new Harmony(PluginGuid);
@@ -35,7 +39,7 @@ public sealed class ExampleModPlugin : BaseUnityPlugin
 
     private void OnDestroy()
     {
-        Logger.LogInfo($"[{PluginName}] OnDestroy (Version: {PluginLongVersion})");
+        Logger.LogInfo($"[{PluginName}] OnDestroy (Version: {PluginVersionGit})");
 
         if (_harmony is null)
             return;
